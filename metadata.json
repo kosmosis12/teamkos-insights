@@ -1,0 +1,5 @@
+{
+  "name": "Team Kos Insights",
+  "description": "An interactive, dynamic dashboard that contains a widget catalog for ingesting and visualizing data from Sisense. Users can select pre-defined widgets or create custom ones, all populated via a simulated ComposeSDK integration.",
+  "requestFramePermissions": []
+}
