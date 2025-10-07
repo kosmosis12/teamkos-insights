@@ -3,7 +3,7 @@ import { Header } from './components/Header';
 import { Dashboard } from './components/Dashboard';
 import { WidgetCatalogModal } from './components/WidgetCatalogModal';
 import type { WidgetInstance, WidgetConfig } from './types';
-import { SisenseContextProvider } from '@sisense/sdk-ui'; // Import the provider
+import { SisenseContextProvider } from '@sisense/sdk-ui';
 
 const App: React.FC = () => {
   const [widgets, setWidgets] = useState<WidgetInstance[]>([]);
@@ -23,10 +23,10 @@ const App: React.FC = () => {
   };
 
   return (
-    // Add the SisenseContextProvider here
     <SisenseContextProvider
       url="https://aesandbox.sisensepoc.com"
-      token={""} // You should generate and use a secure API token here
+      // This now securely uses your API token
+      token={process.env.SISENSE_API_TOKEN}
     >
       <div className="min-h-screen text-brand-dark font-sans">
         <Header onAddWidgetClick={() => setIsModalOpen(true)} />

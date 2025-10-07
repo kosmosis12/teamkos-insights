@@ -11,8 +11,8 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [react()],
       define: {
-        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
+        // This makes the token available in your app code
+        'process.env.SISENSE_API_TOKEN': JSON.stringify(env.VITE_SISENSE_API_TOKEN)
       },
       resolve: {
         alias: {
