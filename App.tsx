@@ -25,8 +25,8 @@ const App: React.FC = () => {
   return (
     <SisenseContextProvider
       url="https://aesandbox.sisensepoc.com"
-      // This now securely uses your API token
-      token={process.env.SISENSE_API_TOKEN}
+      // This uses the Vite-correct way to access the environment variable
+      token={import.meta.env.VITE_SISENSE_API_TOKEN}
     >
       <div className="min-h-screen text-brand-dark font-sans">
         <Header onAddWidgetClick={() => setIsModalOpen(true)} />

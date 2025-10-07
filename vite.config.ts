@@ -10,8 +10,8 @@ export default defineConfig(({ mode }) => {
         host: '0.0.0.0',
       },
       plugins: [react()],
+      // This 'define' block makes the environment variable available to your app
       define: {
-        // This makes the token available in your app code
         'process.env.SISENSE_API_TOKEN': JSON.stringify(env.VITE_SISENSE_API_TOKEN)
       },
       resolve: {
