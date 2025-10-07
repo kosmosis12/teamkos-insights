@@ -1,3 +1,4 @@
+import type { Attribute, Measure } from '@sisense/sdk-data';
 
 export enum ChartType {
   BAR = 'BAR',
@@ -11,10 +12,9 @@ export interface WidgetConfig {
   title: string;
   description: string;
   chartType: ChartType;
-  // In a real app, this would define the Sisense data query
   sisenseQuery: {
-    datasource: string;
-    // more specific query details
+    dimensions: Attribute[];
+    measures: Measure[];
   };
 }
 

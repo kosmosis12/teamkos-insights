@@ -1,7 +1,9 @@
-
 import React from 'react';
 import type { WidgetInstance } from '../types';
 import { Widget } from './Widget';
+import { Responsive, WidthProvider } from 'react-grid-layout';
+
+const ResponsiveGridLayout = WidthProvider(Responsive);
 
 interface DashboardProps {
   widgets: WidgetInstance[];
@@ -18,11 +20,33 @@ export const Dashboard: React.FC<DashboardProps> = ({ widgets, onRemoveWidget })
     );
   }
 
+  // Generate a default layout for new widgets
+  const layouts = {
+    lg: widgets.map((widget, i) => ({
+      i: widget.id,
+      x: (i * 4) % 12,
+      y: Math.floor(i / 3) * 4,
+      w: 4,
+      h: 4,
+      minW: 3,
+      minH: 4,
+    })),
+  };
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+    <ResponsiveGridLayout
+      className="layout"
+      layouts={layouts}
+      breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+      cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+      rowHeight={60}
+      draggableHandle=".drag-handle"
+    >
       {widgets.map(widget => (
-        <Widget key={widget.id} instance={widget} onRemove={onRemoveWidget} />
+        <div key={widget.id} className="bg-white rounded-lg shadow-md">
+          <Widget instance={widget} onRemove={onRemoveWidget} />
+        </div>
       ))}
-    </div>
+    </ResponsiveGridLayout>
   );
 };
