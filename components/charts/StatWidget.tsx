@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { SisenseDataRecord } from '../../types';
 
@@ -7,12 +6,13 @@ interface StatWidgetProps {
 }
 
 export const StatWidget: React.FC<StatWidgetProps> = ({ data }) => {
-  const statValue = data && data.length > 0 ? data[0].value : 'N/A';
+  // Correctly extracts the value from the first row and first column
+  const statValue = data && data.length > 0 ? Object.values(data[0])[0] : 'N/A';
   
   return (
     <div className="flex items-center justify-center w-full h-full">
       <p className="text-5xl font-bold text-brand-dark tracking-tight">
-        {statValue}
+        {String(statValue)}
       </p>
     </div>
   );

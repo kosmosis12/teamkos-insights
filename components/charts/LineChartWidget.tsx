@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import type { SisenseDataRecord } from '../../types';
@@ -8,6 +7,10 @@ interface LineChartWidgetProps {
 }
 
 export const LineChartWidget: React.FC<LineChartWidgetProps> = ({ data }) => {
+  if (!data || data.length === 0) {
+    return <div className="text-sm text-brand-secondary">No data to display.</div>;
+  }
+  
   const dataKeyX = Object.keys(data[0])[0];
   const dataKeyY = Object.keys(data[0])[1];
 
@@ -26,7 +29,7 @@ export const LineChartWidget: React.FC<LineChartWidgetProps> = ({ data }) => {
             }}
         />
         <Legend wrapperStyle={{fontSize: "12px"}}/>
-        <Line type="monotone" dataKey={dataKeyY} stroke="#2b6cb0" strokeWidth={2} dot={{ r: 4 }} activeDot={{ r: 6 }} name="Signups"/>
+        <Line type="monotone" dataKey={dataKeyY} stroke="#2b6cb0" strokeWidth={2} dot={{ r: 4 }} activeDot={{ r: 6 }} name={dataKeyY}/>
       </LineChart>
     </ResponsiveContainer>
   );

@@ -25,7 +25,7 @@ const App: React.FC = () => {
   return (
     <SisenseContextProvider
       url="https://aesandbox.sisensepoc.com"
-      // This uses the Vite-correct way to access the environment variable
+      // This is the correct way to access the token in a Vite project
       token={import.meta.env.VITE_SISENSE_API_TOKEN}
     >
       <div className="min-h-screen text-brand-dark font-sans">

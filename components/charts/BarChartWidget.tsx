@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import type { SisenseDataRecord } from '../../types';
@@ -8,6 +7,10 @@ interface BarChartWidgetProps {
 }
 
 export const BarChartWidget: React.FC<BarChartWidgetProps> = ({ data }) => {
+  if (!data || data.length === 0) {
+    return <div className="text-sm text-brand-secondary">No data to display.</div>;
+  }
+  
   const dataKeyX = Object.keys(data[0])[0];
   const dataKeyY = Object.keys(data[0])[1];
   
@@ -26,7 +29,7 @@ export const BarChartWidget: React.FC<BarChartWidgetProps> = ({ data }) => {
           }}
         />
         <Legend wrapperStyle={{fontSize: "12px"}} />
-        <Bar dataKey={dataKeyY} fill="#2b6cb0" name="Revenue" radius={[4, 4, 0, 0]} />
+        <Bar dataKey={dataKeyY} fill="#2b6cb0" name={dataKeyY} radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );

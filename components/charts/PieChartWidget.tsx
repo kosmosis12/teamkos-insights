@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import type { SisenseDataRecord } from '../../types';
@@ -10,6 +9,14 @@ interface PieChartWidgetProps {
 const COLORS = ['#2b6cb0', '#4299e1', '#63b3ed', '#90cdf4', '#bee3f8'];
 
 export const PieChartWidget: React.FC<PieChartWidgetProps> = ({ data }) => {
+  if (!data || data.length === 0) {
+    return <div className="text-sm text-brand-secondary">No data to display.</div>;
+  }
+
+  // Dynamically get the keys for the name and value
+  const nameKey = Object.keys(data[0])[0];
+  const dataKey = Object.keys(data[0])[1];
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <PieChart>
@@ -29,8 +36,8 @@ export const PieChartWidget: React.FC<PieChartWidgetProps> = ({ data }) => {
           labelLine={false}
           outerRadius="80%"
           fill="#8884d8"
-          dataKey="value"
-          nameKey="name"
+          dataKey={dataKey}
+          nameKey={nameKey}
           paddingAngle={2}
           innerRadius="50%"
         >
